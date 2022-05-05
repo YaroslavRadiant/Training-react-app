@@ -1,0 +1,11 @@
+.item-wrapper{
+    margin: 20px 0;
+    border: 2px solid black;
+    padding: 20px;
+    display:flex;
+    justify-content: space-between;
+}
+.delete-button{
+    padding: 10px;
+    background-color: #0000;
+}

@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+header{
+    padding: 40px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+}
+header a{
+    color: #ffff;
+    text-decoration: none;
+    font-size: 40px;
+}
+.active{
+    border-bottom: 2px solid #ffff;
+}
