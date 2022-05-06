@@ -9,3 +9,6 @@
     padding: 10px;
     background-color: #0000;
 }
+.checked{
+    text-decoration: line-through;
+}

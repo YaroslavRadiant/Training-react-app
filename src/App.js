@@ -6,12 +6,13 @@ import Homepage from './components/homepage/Homepage';
 import ToDoPage from './components/Todo page/ToDoPage';
 import NotFound from './components/not found/NotFound';
 import Layout from './components/layout/Layout';
+import { toDoProvider } from './context/context';
 
 import { Route, Routes } from 'react-router-dom';
 
 export default function App() {
   return (
-    <>
+    <toDoProvider>
       <Routes className="rout-section">
         <Route path="/" element={<Layout></Layout>}>
           <Route index element={<Homepage />}></Route>
@@ -20,6 +21,6 @@ export default function App() {
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
-    </>
+    </toDoProvider>
   );
 }
