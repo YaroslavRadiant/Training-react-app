@@ -1,14 +1,14 @@
 import React from 'react';
 import './toDoItem.css';
+import ToDoContext from '../../../context/context';
 
 export default function ToDoItem({
   toDoName,
   toDoMoreInfo,
-  deleteHandler,
-  checked, 
-  handleChange,
-  id
+  checked,
+  id,
 }) {
+  const { deleteToDoItem, toggleToDoItem } = React.useContext(ToDoContext);
   return (
     <div>
       <div className="item-wrapper">
@@ -19,15 +19,13 @@ export default function ToDoItem({
         <input
           type="checkbox"
           checked={checked}
-          onChange={()=>handleChange(id)}
+          onChange={() => toggleToDoItem(id)}
         ></input>
-        <button
-          className="delete-button"
-          onClick={() => deleteHandler(toDoName)}
-        >
+        <button className="delete-button" onClick={() => deleteToDoItem(id)}>
           Delete this todo
         </button>
       </div>
     </div>
   );
 }
+

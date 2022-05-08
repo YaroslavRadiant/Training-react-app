@@ -1,18 +1,17 @@
 import { useContext, React } from 'react';
-import ToDoItem from '../Todo page/toDoItem/ToDoItem';
-import context from '../../context/context.js';
+import ToDoContext from '../../context/context.js';
 
 export default function Homepage() {
-  let todoContext = useContext(context);
-  console.log(todoContext);
-  // console.log(context)
+  const { toDoList } = useContext(ToDoContext);
+
+  const doneToDos = toDoList.filter((el) => el.isDone).length;
 
   return (
     <>
       <p>All ToDos now</p>
-      <div>{}</div>
+      <div>{toDoList.length}</div>
       <p>Done ToDos</p>
-      <div></div>
+      <div>{doneToDos}</div>
     </>
   );
 }

@@ -11,8 +11,52 @@ const defaultContextState = [
   { todoName: 'Go sleep', moreInfo: 'All night', isDone: true, id: 3 },
 ];
 
-const toDoContext = React.createContext(defaultContextState);
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case 'addToDo': {
+      return [
+        ...state,
+        {
+          todoName: action.newToDo.nameInput,
+          moreInfo: action.newToDo.moreInfoInput,
+          isDone: false,
+          id: new Date().valueOf(),
+        },
+      ];
+    }
+    case 'deleteToDo': {
+      return state.filter((el) => el.id !== action.id);
+    }
+    case 'toggleToDo': {
+      return state.map((el) => {
+        if (el.id === action.id) {
+          return { ...el, isDone: !el.isDone };
+        }
+        return el;
+      });
+    }
+    default:
+      return state;
+  }
+};
 
-export const toDoProvider = toDoContext.Provider;
+const ToDoContext = React.createContext();
 
-export default toDoContext;
+export const ToDoProvider = ({ children }) => {
+  const [state, dispatch] = React.useReducer(reducer, defaultContextState);
+  const value = {
+    toDoList: state,
+    addToDoItem: (newToDo) => {
+      dispatch({ type: 'addToDo', newToDo });
+    },
+    deleteToDoItem: (id) => {
+      dispatch({ type: 'deleteToDo', id });
+    },
+    toggleToDoItem: (id) => {
+      dispatch({ type: 'toggleToDo', id });
+    },
+  };
+  return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>;
+};
+
+export default ToDoContext;
