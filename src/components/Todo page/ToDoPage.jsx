@@ -1,14 +1,14 @@
-import { useState, useContext, React } from 'react';
-import './toDo.css';
-import ToDoItem from './toDoItem/ToDoItem';
-import ToDoContext from '../../context/context';
+import { useState, useContext, React } from "react";
+import "./toDo.css";
+import ToDoItem from "./toDoItem/ToDoItem";
+import ToDoContext from "../../context/context";
 
 export default function ToDoPage() {
   const { toDoList, addToDoItem } = useContext(ToDoContext);
-  const [nameInput, setNameInput] = useState('');
-  const [moreInfoInput, setMoreInfoInput] = useState('');
-  const [nameFilterInput, setNameFilterInput] = useState('');
-  const [moreInfoFilterInput, setMoreInfoFilterInput] = useState('');
+  const [nameInput, setNameInput] = useState("");
+  const [moreInfoInput, setMoreInfoInput] = useState("");
+  const [nameFilterInput, setNameFilterInput] = useState("");
+  const [moreInfoFilterInput, setMoreInfoFilterInput] = useState("");
 
   function settingNameInput(event) {
     setNameInput(event.target.value);
@@ -31,11 +31,13 @@ export default function ToDoPage() {
     if (nameFilterInput) {
       filteredArr = filteredArr.filter((el) => {
         if (el.todoName.includes(nameFilterInput)) return true;
+        else return false;
       });
     }
     if (moreInfoFilterInput) {
       filteredArr = filteredArr.filter((el) => {
         if (el.moreInfo.includes(moreInfoFilterInput)) return true;
+        else return false;
       });
     }
     return filteredArr;
@@ -67,9 +69,6 @@ export default function ToDoPage() {
           <input
             value={nameFilterInput}
             onChange={settingNameFilterInput}
-            // onKeyUp={() =>
-            //   searchByName({ nameFilterInput, moreInfoFilterInput })
-            // }
           />
 
           <p>Mor info filter</p>
@@ -77,20 +76,23 @@ export default function ToDoPage() {
           <input
             value={moreInfoFilterInput}
             onChange={settingMoreInfoFilterInput}
-            // onKeyUp={() => searchByMoreInfo(moreInfoFilterInput)}
           />
         </div>
       </div>
       <div>
-        {filteredArr.map((el) => [
-          <ToDoItem
-            toDoName={el.todoName}
-            toDoMoreInfo={el.moreInfo}
-            checked={el.isDone}
-            id={el.id}
-            key={el.id}
-          ></ToDoItem>,
-        ])}
+        {filteredArr.length ? (
+          filteredArr.map((el) => [
+            <ToDoItem
+              toDoName={el.todoName}
+              toDoMoreInfo={el.moreInfo}
+              checked={el.isDone}
+              id={el.id}
+              key={el.id}
+            ></ToDoItem>,
+          ])
+        ) : (
+          <p style={{textAlign: 'center', marginTop:"20px"}}>ToDos not found</p>
+        )}
       </div>
     </div>
   );
