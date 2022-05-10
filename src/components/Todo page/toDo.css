@@ -5,3 +5,7 @@ h1{
 .page-wrapper{
     padding: 0px 40px;
 }
+.input-area{
+    display: flex;
+    justify-content: space-around;
+}
