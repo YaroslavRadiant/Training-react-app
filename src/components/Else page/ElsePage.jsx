@@ -3,9 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react/cjs/react.development";
 
 export default function ElsePage() {
-  const [posts, setPosts] = useState({
-    list: null,
-  });
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     fetchPosts();
@@ -17,17 +15,16 @@ export default function ElsePage() {
       "https://api.github.com/users/hacktivist123/repos"
     );
     console.log(response);
-    setPosts({ list: response });
-    // console.log(response.data[1]);
+    setPosts(response.data);
     console.log(posts);
   }
 
   return (
     <div>
       <div>
-        {/* {posts.map((el) => {
-          <div>el</div>;
-        })} */}
+        {posts.map((el , key) => {
+          return <div>{el.name}</div>;
+        })}
       </div>
     </div>
   );

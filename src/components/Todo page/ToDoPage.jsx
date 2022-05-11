@@ -29,16 +29,14 @@ export default function ToDoPage() {
     let filteredArr = [...arr];
 
     if (nameFilterInput) {
-      filteredArr = filteredArr.filter((el) => {
-        if (el.todoName.includes(nameFilterInput)) return true;
-        else return false;
-      });
+      filteredArr = filteredArr.filter((el) =>
+        el.todoName.includes(nameFilterInput)
+      );
     }
     if (moreInfoFilterInput) {
-      filteredArr = filteredArr.filter((el) => {
-        if (el.moreInfo.includes(moreInfoFilterInput)) return true;
-        else return false;
-      });
+      filteredArr = filteredArr.filter((el) =>
+        el.moreInfo.includes(moreInfoFilterInput)
+      );
     }
     return filteredArr;
   }
@@ -66,12 +64,9 @@ export default function ToDoPage() {
         <div>
           <p>Name filter</p>
           <p>{nameFilterInput}</p>
-          <input
-            value={nameFilterInput}
-            onChange={settingNameFilterInput}
-          />
+          <input value={nameFilterInput} onChange={settingNameFilterInput} />
 
-          <p>Mor info filter</p>
+          <p>More info filter</p>
           <p>{moreInfoFilterInput}</p>
           <input
             value={moreInfoFilterInput}
@@ -91,7 +86,9 @@ export default function ToDoPage() {
             ></ToDoItem>,
           ])
         ) : (
-          <p style={{textAlign: 'center', marginTop:"20px"}}>ToDos not found</p>
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            ToDos not found
+          </p>
         )}
       </div>
     </div>
