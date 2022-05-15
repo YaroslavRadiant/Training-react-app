@@ -1,18 +1,13 @@
-import React from 'react';
-import './toDoItem.css';
-import ToDoContext from '../../../context/context';
+import React from "react";
+import "./toDoItem.css";
+import ToDoContext from "../../../../context/context";
 
-export default function ToDoItem({
-  toDoName,
-  toDoMoreInfo,
-  checked,
-  id,
-}) {
+export default function ToDoItem({ toDoName, toDoMoreInfo, checked, id }) {
   const { deleteToDoItem, toggleToDoItem } = React.useContext(ToDoContext);
   return (
     <div>
       <div className="item-wrapper">
-        <div className={checked ? 'text-container checked' : 'text-container'}>
+        <div className={checked ? "text-container checked" : "text-container"}>
           <p>{toDoName}</p>
           <p>{toDoMoreInfo}</p>
         </div>
@@ -28,4 +23,3 @@ export default function ToDoItem({
     </div>
   );
 }
-

@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import ElsePage from './components/Else page/ElsePage';
+import ElsePage from "./components/pages/Else-page/ElsePage";
+import NotFound from "./components/pages/Not-found/NotFound";
+import Homepage from "./components/pages/Homepage/Homepage";
+import ToDoPage from "./components/pages/Todo page/ToDoPage";
+import Layout from "./components/layout/Layout";
+import { ToDoProvider } from "./context/context";
 
-import Homepage from './components/homepage/Homepage';
-import ToDoPage from './components/Todo page/ToDoPage';
-import NotFound from './components/not found/NotFound';
-import Layout from './components/layout/Layout';
-import { ToDoProvider } from './context/context';
-
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (

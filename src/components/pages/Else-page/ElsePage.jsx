@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 
 export default function ElsePage() {
   const [posts, setPosts] = useState([]);
@@ -22,7 +22,7 @@ export default function ElsePage() {
   return (
     <div>
       <div>
-        {posts.map((el , key) => {
+        {posts.map((el, key) => {
           return <div>{el.name}</div>;
         })}
       </div>
