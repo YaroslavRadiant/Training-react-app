@@ -44,7 +44,6 @@ export default function InputContainer({ handleFilter }) {
   function handleAddToDoItem() {
     console.log("done");
     addToDoItem({ nameInput, moreInfoInput });
-    filteredArr();
   }
   const filteredArr = () => {
     const filtered = filter(toDoList, {
