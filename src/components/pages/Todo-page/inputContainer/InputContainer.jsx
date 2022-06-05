@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import Input from "./input/Input";
-import ToDoContext from "../../../../context/context";
+import React, { useState, useEffect, useContext } from 'react';
+import Input from './input/Input';
+import ToDoContext from '../../../../context/context';
 
 export default function InputContainer({ handleFilter }) {
-  const [titleToDo, setTitleToDo] = useState("");
-  const [descToDo, setDescToDo] = useState("");
-  const [nameInput, setNameInput] = useState("");
-  const [moreInfoInput, setMoreInfoInput] = useState("");
+  const [titleToDo, setTitleToDo] = useState('');
+  const [descToDo, setDescToDo] = useState('');
+  const [nameInput, setNameInput] = useState('');
+  const [moreInfoInput, setMoreInfoInput] = useState('');
   const { toDoList, addToDoItem } = useContext(ToDoContext);
 
   useEffect(() => {
@@ -42,9 +42,8 @@ export default function InputContainer({ handleFilter }) {
   }
 
   function handleAddToDoItem() {
-    console.log("done");
+    console.log('done');
     addToDoItem({ nameInput, moreInfoInput });
-    filteredArr();
   }
   const filteredArr = () => {
     const filtered = filter(toDoList, {
@@ -58,24 +57,24 @@ export default function InputContainer({ handleFilter }) {
     <>
       <div>
         <Input
-          name={"What to do"}
+          name={'What to do'}
           value={nameInput}
           onChange={settingNameInput}
         />
         <Input
-          name={"More information"}
+          name={'More information'}
           value={moreInfoInput}
           onChange={settingMoreInfoInput}
         />
         <button onClick={handleAddToDoItem}>Add new todo</button>
       </div>
       <Input
-        name={"Name filter"}
+        name={'Name filter'}
         value={titleToDo}
         onChange={settingNameFilterInput}
       />
       <Input
-        name={"More info"}
+        name={'More info'}
         value={descToDo}
         onChange={settingMoreInfoFilterInput}
       />

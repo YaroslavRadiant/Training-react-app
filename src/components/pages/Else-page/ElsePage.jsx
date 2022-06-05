@@ -1,6 +1,7 @@
-import axios from "axios";
-import React from "react";
-import { useState, useEffect } from "react";
+import axios from 'axios';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ElsePage() {
   const [posts, setPosts] = useState([]);
@@ -12,20 +13,22 @@ export default function ElsePage() {
 
   async function fetchPosts() {
     const response = await axios.get(
-      "https://api.github.com/users/hacktivist123/repos"
+      'https://jsonplaceholder.typicode.com/posts'
     );
-    console.log(response);
+    console.log(response.data);
     setPosts(response.data);
     console.log(posts);
   }
-
+  console.log(posts);
   return (
     <div>
-      <div>
-        {posts.map((el, key) => {
-          return <div>{el.name}</div>;
-        })}
-      </div>
+      {posts.map((el, key) => {
+        return (
+          <Link key={el.id} to={`/else/${el.id}`}>
+            <li>{el.title}</li>
+          </Link>
+        );
+      })}
     </div>
   );
 }

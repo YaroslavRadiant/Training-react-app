@@ -1,13 +1,12 @@
-import React from "react";
-import { actions } from "../reducers/actions";
-import { reducer } from "../reducers/reducer";
-import { defaultContextState } from "../reducers/state";
+import React from 'react';
+import { actions } from '../reducers/actions';
+import { reducer } from '../reducers/reducer';
+import { defaultContextState } from '../reducers/state';
 
 const ToDoContext = React.createContext();
 
 export const ToDoProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, defaultContextState);
-  debugger;
   const value = {
     toDoList: state,
     addToDoItem: (newToDo) => {
