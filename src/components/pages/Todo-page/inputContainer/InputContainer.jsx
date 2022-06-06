@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Input from './input/Input';
+import Input from '../../../input/Input';
 import ToDoContext from '../../../../context/context';
 
 export default function InputContainer({ handleFilter }) {

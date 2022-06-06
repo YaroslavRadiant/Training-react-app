@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import './layout.css';
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import "./layout.css";
 
 export default function Layout() {
   return (
@@ -9,6 +9,7 @@ export default function Layout() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/todo">ToDo page</NavLink>
         <NavLink to="/else">Else page</NavLink>
+        <NavLink to="/weather">Weather page</NavLink>
       </header>
       <Outlet />
     </>
