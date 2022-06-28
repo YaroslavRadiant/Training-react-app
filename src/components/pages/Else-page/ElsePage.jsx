@@ -20,6 +20,7 @@ export default function ElsePage() {
     setPosts(response.data);
     console.log(posts);
   }
+
   console.log(posts);
   return (
     <div>

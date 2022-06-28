@@ -15,6 +15,8 @@ export default function WeatherPage() {
     setSearchCountryInputValue(event.target.value);
   }
 
+  let url = window.location.href;
+  console.log(url);
   function addWeatherToState() {
     getWeatherData(searchCountryInputValue)
       .then((res) => {
