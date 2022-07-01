@@ -21,7 +21,7 @@ export default function ToDoPage() {
       <p style={{ textAlign: "center", marginTop: "20px" }}>ToDos not found</p>
     );
   };
-
+  
   return (
     <div className="page-wrapper">
       <h1>ToDoPage</h1>

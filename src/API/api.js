@@ -1,9 +1,16 @@
-export default async function getWeatherData(region) {
+export default function getWeatherData(region) {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "e68afb035fmsh0632c2e1eb66155p104875jsn8ea9af63ccb1",
+      "X-RapidAPI-Host": "community-open-weather-map.p.rapidapi.com",
+    },
+  };
+
   return fetch(
-    // `https://api.openweathermap.org/data/2.5/weather?q=${region}&appid=4a198c19172ec507deecaef0c48627d4&units=metric`
-    `https://api.openweathermap.org/data/2.5/weather?q=${region}&appid=91f24f2431b7c2d6bc85cf5e4715a910&units=metric`
-  ).then((res) => {
-    console.log(res);
-    res.json();
-  });
+    `https://community-open-weather-map.p.rapidapi.com/weather?q=${region}&lat=0&lon=0&id=2172797&lang=ru&units=metric`,
+    options
+  )
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 }
