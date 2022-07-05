@@ -42,7 +42,8 @@ export default function ElsePage() {
             {allCity.reduce((accumulator, currentValue) => {
               console.log();
               return accumulator + currentValue.main.temp;
-            }, zeroValue)}
+            }, zeroValue)} 
+            {/* Вынести в отдельную функцию */}
           </p>
         </div>
       ) : (

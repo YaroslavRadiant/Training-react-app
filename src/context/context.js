@@ -3,6 +3,8 @@ import { actions } from "../reducers/actions";
 import { reducer } from "../reducers/reducer";
 import { defaultContextState } from "../reducers/state";
 
+
+// Поменять на редакс
 const ToDoContext = React.createContext();
 
 export const ToDoProvider = ({ children }) => {
@@ -30,3 +32,4 @@ export const ToDoProvider = ({ children }) => {
 };
 
 export default ToDoContext;
+//action creators

@@ -16,6 +16,7 @@ export default function WeatherPage() {
   }
 
   let url = window.location.href;
+  // Get data from router history? match?
   console.log(url);
   function addWeatherToState() {
     getWeatherData(searchCountryInputValue)
