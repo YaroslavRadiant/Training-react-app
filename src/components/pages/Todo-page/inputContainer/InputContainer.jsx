@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
-import Input from "../../../input/Input";
-import ToDoContext from "../../../../context/context";
-import { useDispatch, useSelector } from "react-redux";
-import { addToDo } from "../../../../store/actions/toDoActions";
+import React, { useState, useEffect, useContext } from 'react';
+import Input from '../../../input/Input';
+import ToDoContext from '../../../../context/context';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToDo } from '../../../../store/actions/toDoActions';
 
 export default function InputContainer({ handleFilter }) {
   const dispatch = useDispatch();
-  const [titleToDo, setTitleToDo] = useState("");
-  const [descToDo, setDescToDo] = useState("");
-  const [nameInput, setNameInput] = useState("");
-  const [moreInfoInput, setMoreInfoInput] = useState("");
+  const [titleToDo, setTitleToDo] = useState('');
+  const [descToDo, setDescToDo] = useState('');
+  const [nameInput, setNameInput] = useState('');
+  const [moreInfoInput, setMoreInfoInput] = useState('');
   // const { toDoList, addToDoItem } = useContext(ToDoContext);
 
   // useEffect(() => {
@@ -47,7 +47,7 @@ export default function InputContainer({ handleFilter }) {
   }
 
   function handleAddToDoItem() {
-    console.log("done");
+    console.log(nameInput);
     dispatch(addToDo({ nameInput, moreInfoInput }));
     // addToDoItem({ nameInput, moreInfoInput });
   }
@@ -63,24 +63,24 @@ export default function InputContainer({ handleFilter }) {
     <>
       <div>
         <Input
-          name={"What to do"}
+          name={'What to do'}
           value={nameInput}
           onChange={settingNameInput}
         />
         <Input
-          name={"More information"}
+          name={'More information'}
           value={moreInfoInput}
           onChange={settingMoreInfoInput}
         />
         <button onClick={handleAddToDoItem}>Add new todo</button>
       </div>
       <Input
-        name={"Name filter"}
+        name={'Name filter'}
         value={titleToDo}
         onChange={settingNameFilterInput}
       />
       <Input
-        name={"More info"}
+        name={'More info'}
         value={descToDo}
         onChange={settingMoreInfoFilterInput}
       />

@@ -2,19 +2,19 @@ import {
   ADD_TODO_ITEM,
   REMOVE_TODO_ITEM,
   TOGGLE_COMPLETED,
-} from "../actions/toDoActions";
+} from '../actions/toDoActions';
 
 const initialState = {
   toDos: [
     {
-      todoName: "Read a book",
-      moreInfo: "50 pages every day",
+      todoName: 'Read a book',
+      moreInfo: '50 pages every day',
       isDone: true,
       id: 1,
     },
-    { todoName: "Bye food", moreInfo: "Eggs and milk", isDone: true, id: 2 },
-    { todoName: "Go sleep", moreInfo: "All night", isDone: true, id: 3 },
-    { todoName: "Go sleep", moreInfo: "All night", isDone: true, id: 3 },
+    { todoName: 'Bye food', moreInfo: 'Eggs and milk', isDone: true, id: 2 },
+    { todoName: 'Go sleep', moreInfo: 'All night', isDone: true, id: 3 },
+    { todoName: 'Go sleep', moreInfo: 'All night', isDone: true, id: 3 },
   ],
 };
 
@@ -26,8 +26,8 @@ const toDosReducer = (state = initialState, action) => {
         toDos: [
           ...state.toDos,
           {
-            todoName: action.newToDo.nameInput,
-            moreInfo: action.newToDo.moreInfoInput,
+            todoName: action.nameInput,
+            moreInfo: action.moreInfoInput,
             isDone: false,
             id: new Date().valueOf(),
           },
