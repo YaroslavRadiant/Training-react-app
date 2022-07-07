@@ -16,7 +16,7 @@ import { store } from "./store";
 export default function App() {
   return (
     <Provider store={store}>
-      <ToDoProvider>
+      {/* <ToDoProvider> */}
         <Routes className="rout-section">
           <Route path="/" element={<Layout></Layout>}>
             <Route index element={<Homepage />}></Route>
@@ -27,7 +27,7 @@ export default function App() {
             <Route path="*" element={<NotFound />}></Route>
           </Route>
         </Routes>
-      </ToDoProvider>
+      {/* </ToDoProvider> */}
     </Provider>
   );
 }

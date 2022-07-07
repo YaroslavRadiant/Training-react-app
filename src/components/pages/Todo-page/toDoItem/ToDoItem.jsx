@@ -1,9 +1,16 @@
 import React from "react";
 import "./toDoItem.css";
-import ToDoContext from "../../../../context/context";
+// import ToDoContext from "../../../../context/context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setIsCompleted,
+  removeToDo,
+} from "../../../../store/actions/toDoActions";
 
 export default function ToDoItem({ toDoName, toDoMoreInfo, checked, id }) {
-  const { deleteToDoItem, toggleToDoItem } = React.useContext(ToDoContext);
+  const dispatch = useDispatch();
+  // const toDoList = useSelector((state) => state.toDos);
+
   return (
     <div>
       <div className="item-wrapper">
@@ -14,9 +21,12 @@ export default function ToDoItem({ toDoName, toDoMoreInfo, checked, id }) {
         <input
           type="checkbox"
           checked={checked}
-          onChange={() => toggleToDoItem(id)}
+          onChange={() => dispatch(setIsCompleted(id))}
         ></input>
-        <button className="delete-button" onClick={() => deleteToDoItem(id)}>
+        <button
+          className="delete-button"
+          onClick={() => dispatch(removeToDo(id))}
+        >
           Delete this todo
         </button>
       </div>

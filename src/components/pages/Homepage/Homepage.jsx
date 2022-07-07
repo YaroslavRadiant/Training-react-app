@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Homepage() {
   const toDoList = useSelector((state) => state.toDos);
+  console.log(toDoList);
   // const { toDoList } = useContext(ToDoContext);
 
   const doneToDos = toDoList.toDos.filter((el) => el.isDone).length;
