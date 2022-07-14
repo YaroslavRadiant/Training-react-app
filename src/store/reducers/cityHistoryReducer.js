@@ -12,10 +12,7 @@ const countriesReducer = (state = initialState, action) => {
         cityHistory: [
           ...state.cityHistory,
           {
-            todoName: action.nameInput,
-            moreInfo: action.moreInfoInput,
-            isDone: false,
-            id: new Date().valueOf(),
+            action
           },
         ],
       };

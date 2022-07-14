@@ -1,54 +1,48 @@
-import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getSessionData } from "../../../context/sessionStorage";
 import HistoryListComponent from "../Weather-page/HistoryListComponent/HistoryListComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { zeroingCity } from "../../../store/actions/cityHistoryActions";
+import {
+  getAllCitySelector,
+  getSumOfCity,
+} from "../../../store/reducers/selectors";
 
 export default function ElsePage() {
-  // const [posts, setPosts] = useState([]);
   const zeroValue = 0;
-  const [allCity, setAllCity] = useState();
+  const dispatch = useDispatch();
+  const countryList = useSelector((state) => state);
 
-  useEffect(() => {
-    setAllCity(getSessionData());
-  }, []);
-  console.log(typeof allCity);
-  // async function fetchPosts() {
-  //   const response = await axios.get(
-  //     "https://jsonplaceholder.typicode.com/posts"
-  //   );
-  //   setPosts(response.data);
-  // }
   return (
     <div>
-      {allCity ? (
+      {getAllCitySelector(countryList) ? (
         <div>
-          {allCity.map((el, key) => {
+          {getAllCitySelector(countryList).map((el, key) => {
             return (
               <HistoryListComponent
-                name={el.name}
-                temperature={el.main.temp}
-                weather={el.weather[0].description}
+                name={el.action.payload.name}
+                temperature={el.action.payload.main.temp}
+                weather={el.action.payload.weather[0].description}
               />
-              // <li>
-              //   <p>{el.name}</p>
-              //   <p>{el.main.temp}</p>
-              // </li>
             );
           })}
           <p>
             Summa of all of them:{" "}
-            {allCity.reduce((accumulator, currentValue) => {
-              console.log();
-              return accumulator + currentValue.main.temp;
-            }, zeroValue)} 
+            {/* {getAllCitySelector(countryList).reduce(
+              (accumulator, currentValue) => {
+                return accumulator + currentValue.action.payload.main.temp;
+              },
+              zeroValue
+            )} */}
+            {/* {getSumOfCity(() => getAllCitySelector(countryList))} */}
             {/* Вынести в отдельную функцию */}
           </p>
         </div>
       ) : (
         <p>No value in sessionStorage</p>
       )}
+      <button onClick={() => dispatch(zeroingCity())}>
+        Clear all country state
+      </button>
     </div>
   );
 }

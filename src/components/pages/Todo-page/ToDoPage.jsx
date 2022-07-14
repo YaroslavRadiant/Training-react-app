@@ -2,13 +2,32 @@ import { useState, React } from "react";
 import "./toDo.css";
 import ToDoItem from "./toDoItem/ToDoItem";
 import InputContainer from "./inputContainer/InputContainer";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import chunk from "lodash/chunk";
 
 export default function ToDoPage() {
-  // const [toDoListFiltered, setToDoListFiltered] = useState([]);
   const [filter, setFilter] = useState({ titleToDo: "", descToDo: "" });
 
-  const toDoList = useSelector((state) => state.toDos);
+  const [paginationPage, setPaginationPage] = useState(0);
+  const toDoList = useSelector((state) => state.toDos.toDos);
+  const [toDoPerPage, setToDoPerPage] = useState(10);
+  const toDoListChunked = chunk(toDoList, toDoPerPage);
+
+  console.log(toDoListChunked);
+  const renderPaginationButtons = () => {
+    return toDoListChunked.map((_, index) => {
+      return (
+        <div className="pagination-buttons-container">
+          <button
+            className="pagination-buttons"
+            onClick={() => setPaginationPage(index)}
+          >
+            {index + 1}
+          </button>
+        </div>
+      );
+    });
+  };
 
   const handleSetFilter = (name) => (e) => {
     setFilter({ ...filter, [name]: e.target.value });
@@ -27,8 +46,7 @@ export default function ToDoPage() {
   }
 
   const ToDoListChildren = () => {
-    // filter(toDoList.toDos);
-    const filteredToDoList = filterToDoList(toDoList.toDos, {
+    const filteredToDoList = filterToDoList(toDoListChunked[paginationPage], {
       titleToDo: filter.titleToDo,
       descToDo: filter.descToDo,
     });
@@ -56,6 +74,7 @@ export default function ToDoPage() {
         </div>
       </div>
       <div>{ToDoListChildren()}</div>
+      <div>{renderPaginationButtons()}</div>
     </div>
   );
 }

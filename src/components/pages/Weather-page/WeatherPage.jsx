@@ -9,30 +9,22 @@ export default function WeatherPage() {
   const [countryInfo, setCountryInfo] = useState(null);
   const [searchingHistory, setSearchingHistory] = useState([]);
 
+
   console.log(searchingHistory);
 
   function settingSearchCountryInputValue(event) {
     setSearchCountryInputValue(event.target.value);
   }
 
-  let url = window.location.href;
   // Get data from router history? match?
-  console.log(url);
   function addWeatherToState() {
     getWeatherData(searchCountryInputValue)
       .then((res) => {
         setCountryInfo(res);
         setSearchingHistory([...searchingHistory, res]);
+
       })
-      .then(() => {
-        console.log(countryInfo);
-        console.log(searchingHistory);
-      });
-    // setCountryInfo(getWeatherData(searchCountryInputValue));
   }
-  // console.log(searchCountryInputValue);
-  console.log("countryInfo", countryInfo);
-  console.log("searchingHistory", searchingHistory);
 
   return (
     <div>

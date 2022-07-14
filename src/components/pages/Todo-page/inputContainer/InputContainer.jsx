@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import Input from "../../../input/Input";
-import ToDoContext from "../../../../context/context";
 import { useDispatch, useSelector } from "react-redux";
 import { addToDo } from "../../../../store/actions/toDoActions";
 
@@ -10,13 +9,6 @@ export default function InputContainer({ filter, onChange }) {
   const [descToDo, setDescToDo] = useState("");
   const [nameInput, setNameInput] = useState("");
   const [moreInfoInput, setMoreInfoInput] = useState("");
-  // const { toDoList, addToDoItem } = useContext(ToDoContext);
-
-  // useEffect(() => {
-  //   filteredArr();
-  // }, [titleToDo, descToDo, toDoList]);
-
-  // const toDoList = useSelector((state) => state.toDos);
 
   function settingNameInput(event) {
     setNameInput(event.target.value);

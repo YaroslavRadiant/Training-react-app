@@ -1,12 +1,9 @@
-import { useContext, React } from "react";
-import ToDoContext from "../../../context/context.js";
-import { useDispatch, useSelector } from "react-redux";
-// import { addToDo } from "../../../../store/actions/toDoActions";
+import { React } from "react";
+import { useSelector } from "react-redux";
 
 export default function Homepage() {
   const toDoList = useSelector((state) => state.toDos);
   console.log(toDoList);
-  // const { toDoList } = useContext(ToDoContext);
 
   const doneToDos = toDoList.toDos.filter((el) => el.isDone).length;
 

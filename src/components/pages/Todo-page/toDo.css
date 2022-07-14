@@ -1,11 +1,20 @@
-h1{
-    text-align: center;
-    margin: 40px 0;
+h1 {
+  text-align: center;
+  margin: 40px 0;
 }
-.page-wrapper{
-    padding: 0px 40px;
+.page-wrapper {
+  padding: 0px 40px;
 }
-.input-area{
-    display: flex;
-    justify-content: space-around;
+.input-area {
+  display: flex;
+  justify-content: space-around;
+}
+.pagination-buttons-container {
+  /* display: flex; */
+}
+.pagination-buttons {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin: 0 30px 30px 0;
 }

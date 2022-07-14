@@ -6,17 +6,18 @@ import Homepage from "./components/pages/Homepage/Homepage";
 import ToDoPage from "./components/pages/Todo-page/ToDoPage";
 import Layout from "./components/layout/Layout";
 
-import { ToDoProvider } from "./context/context";
 import { Route, Routes } from "react-router-dom";
 import CurrentPostPage from "./components/pages/Current-post-page/CurrentPostPage";
 import WeatherPage from "./components/pages/Weather-page/WeatherPage";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor } from "./store/index";
 
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <ToDoProvider> */}
+      <PersistGate persistor={persistor}>
         <Routes className="rout-section">
           <Route path="/" element={<Layout></Layout>}>
             <Route index element={<Homepage />}></Route>
@@ -27,7 +28,7 @@ export default function App() {
             <Route path="*" element={<NotFound />}></Route>
           </Route>
         </Routes>
-      {/* </ToDoProvider> */}
+      </PersistGate>
     </Provider>
   );
 }
