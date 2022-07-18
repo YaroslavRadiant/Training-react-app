@@ -271,9 +271,24 @@ const initialState = {
       isDone: true,
       id: 1,
     },
-    { todoName: "Bye food", moreInfo: "Eggs and milk", isDone: true, id: 2 },
-    { todoName: "Go sleep", moreInfo: "All night", isDone: true, id: 3 },
-    { todoName: "Go sleep", moreInfo: "All night", isDone: true, id: 4 },
+    {
+      todoName: "Bye food",
+      moreInfo: "Eggs and milk",
+      isDone: true,
+      id: 90909090909090909909090099090,
+    },
+    {
+      todoName: "Go sleep",
+      moreInfo: "All night",
+      isDone: true,
+      id: 90909099999900000,
+    },
+    {
+      todoName: "Go sleep",
+      moreInfo: "All night",
+      isDone: true,
+      id: 909090909090,
+    },
   ],
 };
 

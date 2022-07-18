@@ -33,7 +33,7 @@ export default function ElsePage() {
               },
               zeroValue
             )} */}
-            {/* {getSumOfCity(() => getAllCitySelector(countryList))} */}
+            {getSumOfCity(countryList)}
             {/* Вынести в отдельную функцию */}
           </p>
         </div>

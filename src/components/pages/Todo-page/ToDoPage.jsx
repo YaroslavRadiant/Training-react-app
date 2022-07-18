@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import "./toDo.css";
 import ToDoItem from "./toDoItem/ToDoItem";
 import InputContainer from "./inputContainer/InputContainer";
@@ -7,27 +7,9 @@ import chunk from "lodash/chunk";
 
 export default function ToDoPage() {
   const [filter, setFilter] = useState({ titleToDo: "", descToDo: "" });
-
   const [paginationPage, setPaginationPage] = useState(0);
   const toDoList = useSelector((state) => state.toDos.toDos);
   const [toDoPerPage, setToDoPerPage] = useState(10);
-  const toDoListChunked = chunk(toDoList, toDoPerPage);
-
-  console.log(toDoListChunked);
-  const renderPaginationButtons = () => {
-    return toDoListChunked.map((_, index) => {
-      return (
-        <div className="pagination-buttons-container">
-          <button
-            className="pagination-buttons"
-            onClick={() => setPaginationPage(index)}
-          >
-            {index + 1}
-          </button>
-        </div>
-      );
-    });
-  };
 
   const handleSetFilter = (name) => (e) => {
     setFilter({ ...filter, [name]: e.target.value });
@@ -45,25 +27,23 @@ export default function ToDoPage() {
     return filteredArr;
   }
 
-  const ToDoListChildren = () => {
-    const filteredToDoList = filterToDoList(toDoListChunked[paginationPage], {
-      titleToDo: filter.titleToDo,
-      descToDo: filter.descToDo,
-    });
-    return filteredToDoList.length ? (
-      filteredToDoList.map((el) => [
-        <ToDoItem
-          toDoName={el.todoName}
-          toDoMoreInfo={el.moreInfo}
-          checked={el.isDone}
-          id={el.id}
-          key={el.id}
-        ></ToDoItem>,
-      ])
-    ) : (
-      <p style={{ textAlign: "center", marginTop: "20px" }}>ToDos not found</p>
-    );
-  };
+  //на єтой странице должно біть 2 компонента: фильтр лист с фильтрами и таблица с пагинациями
+  //если не осталось айтемов на странице перейти на прошлую страницу
+  //по 10 айтемов на странице при фильтрации
+  const filteredToDoList = filterToDoList(toDoList, {
+    titleToDo: filter.titleToDo,
+    descToDo: filter.descToDo,
+  });
+
+  const toDoListChunked = chunk(filteredToDoList, toDoPerPage);
+  console.log(toDoListChunked);
+  const paginatedToDoList = toDoListChunked[paginationPage];
+
+  useEffect(() => {
+    if (!paginatedToDoList) {
+      paginationPage > 0 && setPaginationPage(paginationPage - 1);
+    }
+  }, [paginatedToDoList, paginationPage]);
 
   return (
     <div className="page-wrapper">
@@ -73,8 +53,35 @@ export default function ToDoPage() {
           <InputContainer filter={filter} onChange={handleSetFilter} />
         </div>
       </div>
-      <div>{ToDoListChildren()}</div>
-      <div>{renderPaginationButtons()}</div>
+      <div>
+        {paginatedToDoList?.length ? (
+          paginatedToDoList.map((el) => [
+            <ToDoItem
+              toDoName={el.todoName}
+              toDoMoreInfo={el.moreInfo}
+              checked={el.isDone}
+              id={el.id}
+              key={el.id}
+            ></ToDoItem>,
+          ])
+        ) : (
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            ToDos not found
+          </p>
+        )}
+      </div>
+      <div>
+        {toDoListChunked.map((_, index) => (
+          <div className="pagination-buttons-container">
+            <button
+              className="pagination-buttons"
+              onClick={() => setPaginationPage(index)}
+            >
+              {index + 1}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
